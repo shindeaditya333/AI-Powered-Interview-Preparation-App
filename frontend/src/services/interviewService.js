@@ -1,4 +1,5 @@
 import api from "./api";
+import { upload } from "@vercel/blob/client";
 
 export const startInterview = async (
     domainId,
@@ -46,22 +47,21 @@ export const getAudioQuestionsByDomain = async (domainId) => {
     return response.data;
 };
 
-export const uploadAudio = async (audioBlob) => {
-    const formData = new FormData();
+export const uploadVideo = async (blob) => {
 
-    formData.append("file", audioBlob, "answer.webm");
-
-    const response = await api.post(
-        "/media/audio",
-        formData,
+    const result = await upload(
+        "video-answer.webm",
+        blob,
         {
-            headers: {
-                "Content-Type": "multipart/form-data",
-            },
+            access: "private",
+            handleUploadUrl: "/api/blob/upload",
+            multipart: true,
         }
     );
 
-    return response.data;
+    return {
+        url: result.url,
+    };
 };
 
 export const transcribeAudio = async (audioBlob) => {
@@ -86,30 +86,6 @@ export const getVideoQuestionsByDomain = async (domainId) => {
 
     const response = await api.get(
         `/video-questions/domain/${domainId}`
-    );
-
-    return response.data;
-};
-
-export const uploadVideo = async (blob) => {
-
-    const formData = new FormData();
-
-    formData.append(
-        "file",
-        blob,
-        "video-answer.webm"
-    );
-
-    const response = await api.post(
-        "/media/video",
-        formData,
-        {
-            headers: {
-                "Content-Type":
-                    "multipart/form-data",
-            },
-        }
     );
 
     return response.data;
