@@ -102,7 +102,7 @@ public class SecurityConfig {
         configuration.setAllowedOriginPatterns(
                 List.of(
                         "http://localhost:5173",
-                        "https://ai-powered-interview-preparation-ap.vercel.app"
+                        "https://ai-powered-interview-preparation-2nam9u2vq.vercel.app"
                 )
         );
 
