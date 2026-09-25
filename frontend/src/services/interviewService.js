@@ -47,6 +47,29 @@ export const getAudioQuestionsByDomain = async (domainId) => {
     return response.data;
 };
 
+export const uploadAudio = async (audioBlob) => {
+    const formData = new FormData();
+
+    formData.append(
+        "file",
+        audioBlob,
+        "answer.webm"
+    );
+
+    const response = await api.post(
+        "/media/audio",
+        formData,
+        {
+            headers: {
+                "Content-Type":
+                    "multipart/form-data",
+            },
+        }
+    );
+
+    return response.data;
+};
+
 export const uploadVideo = async (blob) => {
 
     const result = await upload(
