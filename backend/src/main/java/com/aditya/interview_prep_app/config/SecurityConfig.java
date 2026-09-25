@@ -99,10 +99,10 @@ public class SecurityConfig {
         CorsConfiguration configuration =
                 new CorsConfiguration();
 
-        configuration.setAllowedOriginPatterns(
+        configuration.setAllowedOrigins(
                 List.of(
                         "http://localhost:5173",
-                        "https://ai-powered-interview-preparation-2nam9u2vq.vercel.app"
+                        "https://ai-powered-interview-preparation-ap.vercel.app"
                 )
         );
 
