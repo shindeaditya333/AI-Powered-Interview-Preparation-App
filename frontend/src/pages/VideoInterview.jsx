@@ -381,7 +381,11 @@ export default function VideoInterview() {
 
             const recorder =
                 new MediaRecorder(
-                    stream
+                    stream,
+                    {
+                        videoBitsPerSecond: 600000,
+                        audioBitsPerSecond: 48000,
+                    }
                 );
 
 
